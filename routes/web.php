@@ -17,5 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
+
+Route::get('/upload', '\App\Http\Controllers\UploadController@show')->name('upload');
+Route::post('/uploadBeat', '\App\Http\Controllers\UploadController@store')->name('uploadBeat');
+
 Route::get('/EmailTest', [MailController::class, 'show'])->name('email');
+
 Route::get('/details', 'App\Http\Controllers\DetailsController@show')->name('details');

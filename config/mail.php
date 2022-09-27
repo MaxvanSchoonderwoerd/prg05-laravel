@@ -1,5 +1,8 @@
 <?php
+
+
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Default Mailer
@@ -42,16 +45,20 @@ return [
         'ses' => [
             'transport' => 'ses',
         ],
+
         'mailgun' => [
             'transport' => 'mailgun',
         ],
+
         'postmark' => [
             'transport' => 'postmark',
         ],
+
         'sendmail' => [
             'transport' => 'sendmail',
             'path' => env('MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -bs -i'),
         ],
+
         'log' => [
             'transport' => 'log',
             'channel' => env('MAIL_LOG_CHANNEL'),
@@ -77,6 +84,7 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
+
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
@@ -93,8 +101,11 @@ return [
     */
     'markdown' => [
         'theme' => 'default',
-        'paths' => [
-            resource_path('views/vendor/mail'),
+        'markdown' => [
+            'theme' => 'default',
+
+            'paths' => [
+                resource_path('views/vendor/mail'),
+            ],
         ],
-    ],
-];
+    ]];

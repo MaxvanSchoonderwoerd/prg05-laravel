@@ -3355,6 +3355,7 @@
             "time": "2022-07-29T07:42:06+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "symfony/http-client",
             "version": "v6.1.4",
             "source": {
@@ -3520,6 +3521,8 @@
             "time": "2022-04-22T07:30:54+00:00"
         },
         {
+=======
+>>>>>>> origin/main
             "name": "symfony/http-foundation",
             "version": "v6.1.4",
             "source": {
@@ -3779,6 +3782,7 @@
             "time": "2022-08-03T05:16:05+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "symfony/mailgun-mailer",
             "version": "v6.1.0",
             "source": {
@@ -3844,6 +3848,8 @@
             "time": "2022-04-01T07:15:35+00:00"
         },
         {
+=======
+>>>>>>> origin/main
             "name": "symfony/mime",
             "version": "v6.1.4",
             "source": {
