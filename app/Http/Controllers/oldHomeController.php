@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 
-class HomeController extends Controller
+class oldHomeController extends Controller
 {
     public function show()
     {
         $title = 'Home';
         $posts = Post::all();
-        return view("Home", compact('title', 'posts'));
+        return view("oldHome", compact('title', 'posts'));
      }
 }

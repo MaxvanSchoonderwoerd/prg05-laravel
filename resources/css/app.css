@@ -24,6 +24,10 @@
     /*shadows*/
     --shdw_primary: -1rem 1rem 1rem rgba(0, 102, 102, 0.15);
     --shdw_secondary: -0.5rem 0.5rem 1rem rgba(0, 102, 102, 0.3);
+
+    /*size*/
+    --cover_size: 10rem;
+
 }
 
 html {
@@ -73,80 +77,60 @@ header {
 
 /*home*/
 
-.coverImg {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 30rem;
-    object-fit: cover;
-    box-shadow: var(--shdw_secondary);
-    border-radius: 1rem;
-}
-
-.imgGradient::after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: 85%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(0, 0, 0, 0.7));
-    border-radius: 1rem;
-}
-
-.listItem {
+li {
+    position: relative;
     text-decoration: none;
     list-style: none;
-    position: relative;
     color: var(--clr_third);
-    text-align: left;
 }
 
-.postsList {
-    position: relative;
-    margin: 0.5rem 0;
-    text-align: center;
+.postsContainer {
+    width: 30rem;
 }
 
-.postsList > a {
-    display: block;
-    position: relative;
-    min-height: 30rem;
-    width: 35rem;
-    color: var(--clr_primary);
-    text-decoration: none;
-    transition: ease-in-out 250ms;
-    border-radius: 1rem;
-    font-size: 2rem;
+.post {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 5rem 0;
 }
 
-.postsList > a:hover {
-    /*opacity: 0.8;*/
-    transform: scale(1.025);
-    transition: ease-in-out 250ms;
 
-}
-
-li > .audioPlayer {
+.imgLink {
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 1rem;
-    height: 4.5rem;
-    width: 25rem;
-    margin-left: auto;
-    margin-right: auto;
+    width: var(--cover_size);
+    height: var(--cover_size);
     z-index: 1;
 }
 
+.coverImg {
+    width: var(--cover_size);
+    box-shadow: var(--shdw_secondary);
+}
+
+.textLink {
+    position: relative;
+    color: var(--clr_third);
+    padding: 2rem 0 calc(var(--cover_size) - 3.4rem) 0;
+    width: 20rem;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    transition: ease-in-out 250ms;
+    box-shadow: var(--shdw_secondary);
+}
+
+.audioPlayer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 0;
+}
+
 audio::-webkit-media-controls-panel {
-    background-color: var(--clr_primary);
+    background-color: var(--clr_primary)
+
 }
 
 .input {

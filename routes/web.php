@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\DetailsController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\oldHomeController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'show'])->name('home');
+Route::get('/', [oldHomeController::class, 'show'])->name('home');
 
 Route::get('/upload', '\App\Http\Controllers\UploadController@show')->name('upload');
 Route::post('/uploadBeat', '\App\Http\Controllers\UploadController@store')->name('uploadBeat');
