@@ -8,8 +8,8 @@ class oldHomeController extends Controller
 {
     public function show()
     {
-        $title = 'Home';
-        $posts = Post::all();
-        return view("oldHome", compact('title', 'posts'));
-     }
+        return view("oldHome", [
+            'posts' => Post::filter(request(['search', 'genre', 'bpm']))->get()
+        ]);
+    }
 }

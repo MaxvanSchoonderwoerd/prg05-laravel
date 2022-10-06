@@ -24,3 +24,7 @@ Route::post('/uploadBeat', '\App\Http\Controllers\UploadController@store')->name
 Route::get('/EmailTest', [MailController::class, 'show'])->name('email');
 
 Route::get('/details', 'App\Http\Controllers\DetailsController@show')->name('details');
+
+Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

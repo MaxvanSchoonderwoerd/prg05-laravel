@@ -1,4 +1,4 @@
-@extends('layouts.web')
+@extends('layouts.app')
 @section('title', 'details')
 @section('content')
     <section class="section detailsSection">
