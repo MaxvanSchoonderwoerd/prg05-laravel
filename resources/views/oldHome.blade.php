@@ -1,29 +1,29 @@
 @extends('layouts.app')
 @section('title', 'home')
 @section('content')
+    {{--    title--}}
     <section class="section">
         <div class="container">
             <h1>Beats</h1>
             <p>Listen to cool beats uploaded by you</p>
         </div>
     </section>
-    <section class="filterSection">
+    {{--    filters--}}
+    <section class="section filterSection">
         <form class="filterForm" method="get">
             <input name="search" type="text" placeholder="Search" value="{{request('search')}}">
-            <label for="genre">Genre</label>
-            <select name="genre" id="genre">
-                <option value=""></option>
-                <option value="Hiphop">Hiphop</option>
-                <option value="Trap">Trap</option>
-                <option value="Drill">Drill</option>
-                <option value="RnB">RnB</option>
-                <option value="Pop">Pop</option>
-                <option value="House">House</option>
-                <option value="Drum And Bass">Drum And Bass</option>
-                <option value="2step">2step</option>
-                <option value="Garage">Garage</option>
-                <option value="Other">Other</option>
-            </select>
+            <label for="genre" class="filterList"><span class="filterTitle">Genre</span>
+                <span class="checkBox"><input name="genre" type="checkbox" value="Hiphop">Hiphop</span>
+                <span class="checkBox"><input name="genre" type="checkbox" value="Trap">Trap</span>
+                <span class="checkBox"><input name="genre" type="checkbox" value="Drill">Drill</span>
+                <span class="checkBox"><input name="genre" type="checkbox" value="RnB">RnB</span>
+                <span class="checkBox"><input name="genre" type="checkbox" value="Pop">Pop</span>
+                <span class="checkBox"><input name="genre" type="checkbox" value="House">House</span>
+                <span class="checkBox"><input name="genre" type="checkbox" value="Drum And Bass">Drum And Bass</span>
+                <span class="checkBox"><input name="genre" type="checkbox" value="2step">2step</span>
+                <span class="checkBox"><input name="genre" type="checkbox" value="Garage">Garage</span>
+                <span class="checkBox"><input name="genre" type="checkbox" value="Other">Other</span>
+            </label>
             <label for="bpm">Bpm range</label>
             <select name="bpm" id="genre">
                 <option value=""></option>
@@ -36,14 +36,7 @@
             <button class="button" type="submit">Filter</button>
         </form>
     </section>
-    <section class="section">
-        <nav class="nav">
-            @auth()
-                <a class="navBtn" href="{{route('upload')}}">upload a beat</a>
-                <a class="navBtn" href="{{route('email')}}">test email</a>
-            @endauth
-        </nav>
-    </section>
+    {{--    posts--}}
     <section class="section">
         <div class="postsContainer">
             <ul class="postsUl">

@@ -89,10 +89,25 @@ header {
 .filterSection {
     position: fixed;
     margin-left: 1rem;
+    padding-top: 1rem;
 }
 
-.filterForm {
+.filterList {
+    display: flex;
+    flex-direction: column;
+}
 
+.filterTitle {
+
+}
+
+.checkBox {
+    display: flex;
+    align-items: center;
+}
+
+.checkBox > input {
+    margin-right: 0.5rem;
 }
 
 .navBtn {
@@ -117,7 +132,8 @@ li {
 }
 
 .postsUl {
-    margin-top: 1rem;
+    margin-left: 17rem;
+    padding: 1rem 0 0 0;
     display: flex;
     flex-direction: row;
     max-width: 80vw;
@@ -127,7 +143,7 @@ li {
 
 .post {
     //display: grid;
-    margin: 1rem;
+    margin-bottom: 2rem;
     transition: ease-in-out 100ms;
 }
 
