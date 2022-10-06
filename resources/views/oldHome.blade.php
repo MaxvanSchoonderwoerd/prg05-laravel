@@ -50,6 +50,7 @@
                         <div class="right">
                             <a class="textLink" href="{{route('details')}}?id={{$post->id}}">{{$post->title}}
                                 - {{$post->genre}}
+                                <p>favourite</p>
                                 <audio class="audioPlayer" controls>
                                     <source src="/{{$post->file}}" type="audio/mp3">
                                 </audio>
