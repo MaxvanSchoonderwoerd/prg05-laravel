@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use function Termwind\renderUsing;
 
 class UploadController extends Controller
 {
@@ -45,6 +44,7 @@ class UploadController extends Controller
 
 
             //set the fillable attributes in the class to the ones the user has uploaded
+            $post->user_id = Auth::id();
             $post->title = $request->title;
             $post->bpm = $request->bpm;
             $post->description = $request->description;
