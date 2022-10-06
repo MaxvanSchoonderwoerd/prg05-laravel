@@ -15,6 +15,15 @@ class UploadController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'title'=> 'required',
+            'description'=> 'required',
+            'bpm'=> 'required',
+            'genre'=> 'required',
+            'm_cover'=> 'required',
+            'm_audio'=> 'required',
+        ]);
+
         if ($request->hasFile('m_audio')) {
             //new post instance
             $post = new Post();
@@ -57,8 +66,7 @@ class UploadController extends Controller
             //save the post to database
             $post->save();
         }
-
-        return redirect()->back();
+        return redirect()->route('home');
     }
 }
 

@@ -26,6 +26,14 @@ class Post extends model
         }
     }
 
+    /**
+     * Get the user that owns the phone.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected $fillable = [
         'title',
         'description',

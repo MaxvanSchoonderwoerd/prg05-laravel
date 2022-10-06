@@ -43,19 +43,17 @@
                 @foreach($posts as $post)
                     <li class="post">
                         <div class="left">
-                            <a class="imgLink" href="{{route('details')}}?id={{$post->id}}">
+                            <a class="imgLink" href="{{route('post.show', $post)}}">
                                 <img class="coverImg" src="{{$post->cover}}" alt="Cover art">
                             </a>
                         </div>
                         <div class="right">
-                            <a class="textLink" href="{{route('details')}}?id={{$post->id}}">{{$post->title}}
+                            <a class="textLink" href="{{route('post.show', $post)}}"> {{$post->title}}
                                 - {{$post->genre}}
-                                <p>favourite</p>
                                 <audio class="audioPlayer" controls>
                                     <source src="/{{$post->file}}" type="audio/mp3">
                                 </audio>
                             </a>
-
                         </div>
                     </li>
                 @endforeach

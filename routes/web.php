@@ -3,7 +3,9 @@
 use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\oldHomeController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +18,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [oldHomeController::class, 'show'])->name('home');
+Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('/upload', [PostController::class, 'create'])->name('upload');
+Route::post('/uploadBeat', [PostController::class, 'store']);
 
-Route::get('/upload', '\App\Http\Controllers\UploadController@show')->name('upload');
-Route::post('/uploadBeat', '\App\Http\Controllers\UploadController@store')->name('uploadBeat');
+Route::resource('post', PostController::class);
 
 Route::get('/EmailTest', [MailController::class, 'show'])->name('email');
 
-Route::get('/details', 'App\Http\Controllers\DetailsController@show')->name('details');
-
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
