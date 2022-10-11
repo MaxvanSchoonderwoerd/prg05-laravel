@@ -179,7 +179,6 @@ li {
 }
 
 
-
 .audioPlayer {
     position: absolute;
     left: 0;
@@ -248,19 +247,49 @@ tr {
 
 /*form*/
 
-form {
-    display: grid;
-    grid-gap: 0.5rem;
-    width: 15rem;
+.form-control::placeholder {
+    color: black;
 }
 
-input {
+.form {
+    display: grid;
+    width: 20rem;
+}
+
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    //margin-right: -5px;
+    //margin-left: -5px;
+    justify-content: space-around;
+
+    > .col,
+    > [class*="col-"] {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+}
+
+.form-row > .mb-3 {
+    width: calc(50% - 0.5rem);
+}
+
+.form-row > .mb-3:first-child {
+    margin-right: 0.5rem;
+}
+
+.form-row > .mb-3:nth-child(2) {
+    margin-left: 0.5rem;
+}
+
+.maxinput {
     padding: 0.5rem;
     color: var(--clr_third);
     background-color: var(--clr_primary);
 }
 
-textarea {
+.maxtextarea {
     font-family: 'Open Sans', sans-serif;
     resize: none;
     display: block;
