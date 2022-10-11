@@ -59,7 +59,7 @@
                             <a class="nav-link" href="{{route('email')}}">Email</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('upload')}}">Upload</a>
+                            <a class="nav-link" href="{{route('post.create')}}">Upload</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view("oldHome", [
+        return view("Home", [
             'posts' => Post::filter(request(['search', 'genre', 'bpm']))->get()
         ]);
     }
@@ -122,21 +122,35 @@ class PostController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
+
+        Post::find($id)->update([
+            'title' => request('title'),
+            'description' => request('description')
+        ]);
+
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+
+        $post->delete();
+
+        return redirect()->route('post.index');
     }
 }

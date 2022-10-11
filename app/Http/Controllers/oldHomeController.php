@@ -8,7 +8,7 @@ class oldHomeController extends Controller
 {
     public function show()
     {
-        return view("oldHome", [
+        return view("Home", [
             'posts' => Post::filter(request(['search', 'genre', 'bpm']))->get()
         ]);
     }

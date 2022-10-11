@@ -19,8 +19,6 @@ use App\Http\Controllers\UploadController;
 */
 
 Route::get('/', [PostController::class, 'index'])->name('home');
-Route::get('/upload', [PostController::class, 'create'])->name('upload');
-Route::post('/uploadBeat', [PostController::class, 'store']);
 
 Route::resource('post', PostController::class);
 

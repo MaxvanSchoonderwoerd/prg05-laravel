@@ -8,7 +8,7 @@
         </div>
     </section>
     <section class="section">
-        <form action="{{url('uploadBeat')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <input type="text" id="title" name="title" maxlength="40" placeholder="Title" required>
             @error('title')
