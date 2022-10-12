@@ -6,6 +6,8 @@ use App\Models\Favourite;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use JetBrains\PhpStorm\NoReturn;
+use Illuminate\Routing\ResourceRegistrar;
 
 class PostController extends Controller
 {
@@ -71,7 +73,7 @@ class PostController extends Controller
             $cover = $request->file('m_cover');
 
             //rename file to [audio name] + [cover file extension (png or jpg)]
-            $coverName = $audioName . '.' . $cover->getClientOriginalExtension();
+            $coverName = pathinfo($audioName, PATHINFO_FILENAME) . '.' . $cover->getClientOriginalExtension();
 
             //move file to public/assets/cover
             $cover->move('assets/cover/', $coverName);
@@ -136,6 +138,27 @@ class PostController extends Controller
             'description' => request('description')
         ]);
 
+        return back();
+    }
+
+
+    /**
+     * Enable or disable a post
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function switch(Request $request)
+    {
+        $post = Post::find($request->id);
+        if ($post->enabled == 1) {
+            $enabled = 0;
+        }else {
+            $enabled = 1;
+        }
+        $post->update([
+            'enabled' => $enabled
+        ]);
         return back();
     }
 
