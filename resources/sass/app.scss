@@ -162,7 +162,6 @@ li {
 
 .coverImg {
     width: var(--cover_size);
-    //box-shadow: var(--shdw_secondary);
 }
 
 .textLink {
@@ -344,5 +343,8 @@ tr {
     background-repeat: no-repeat;
 }
 
+.switch {
+    width: 4rem;
+}
 
 

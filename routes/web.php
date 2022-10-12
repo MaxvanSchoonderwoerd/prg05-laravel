@@ -4,6 +4,7 @@ use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\oldHomeController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UploadController;
 
@@ -20,7 +21,10 @@ use App\Http\Controllers\UploadController;
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 
+Route::post('/post/switch', 'App\Http\Controllers\PostController@switch')->name('switch');
 Route::resource('post', PostController::class);
+
+Route::resource('user', UserController::class);
 
 Route::get('/EmailTest', [MailController::class, 'show'])->name('email');
 

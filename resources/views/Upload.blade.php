@@ -86,7 +86,6 @@
             </div>
             <button class="btn btn-primary mb-2" type="submit">Upload</button>
         </form>
-
     </section>
 @endsection
 

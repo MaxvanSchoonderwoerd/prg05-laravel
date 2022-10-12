@@ -16,6 +16,7 @@ class Post extends model
         }
 
         if ($filters['genre'] ?? false) {
+
             $query->where('genre', 'like', '%' . request('genre') . '%');
         }
 
@@ -41,5 +42,6 @@ class Post extends model
         'genre',
         'file',
         'cover',
+        'enabled'
     ];
 }
