@@ -11,6 +11,9 @@ class Post extends model
 
     public function scopeFilter($query, array $filters)
     {
+        if ('enabled' ?? false) {
+            $query->where('enabled', 'like', '1');
+        }
         if ($filters['search'] ?? false) {
             $query->where('title', 'like', '%' . request('search') . '%');
         }

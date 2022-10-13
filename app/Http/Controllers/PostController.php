@@ -18,9 +18,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view("Home", [
-            'posts' => Post::filter(request(['search', 'genre', 'bpm']))->get()
-        ]);
+        return view("Home",
+            [
+                'posts' => Post::filter(['enabled'], request(['search', 'genre', 'bpm']))->get(),
+                'favourites' => Favourite::all()
+            ]);
     }
 
     /**
@@ -153,7 +155,7 @@ class PostController extends Controller
         $post = Post::find($request->id);
         if ($post->enabled == 1) {
             $enabled = 0;
-        }else {
+        } else {
             $enabled = 1;
         }
         $post->update([
@@ -161,6 +163,26 @@ class PostController extends Controller
         ]);
         return back();
     }
+
+
+    /**
+     * Like a post
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function like(Request $request)
+    {
+        $postId = $request->id;
+        $userId = auth()->id();
+        $favourite = new Favourite();
+        $favourite->user_id = $userId;
+        $favourite->post_id = $postId;
+        $favourite->liked = 1;
+        $favourite->save();
+        return back();
+    }
+
 
     /**
      * Remove the specified resource from storage.

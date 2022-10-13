@@ -21,6 +21,8 @@ use App\Http\Controllers\UploadController;
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 
+
+Route::post('/post/like', 'App\Http\Controllers\PostController@like')->name('like');
 Route::post('/post/switch', 'App\Http\Controllers\PostController@switch')->name('switch');
 Route::resource('post', PostController::class);
 
