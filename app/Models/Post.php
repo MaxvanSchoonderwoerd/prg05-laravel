@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends model
 {
     use HasFactory;
+    use Likeable;
 
     public function scopeFilter($query, array $filters)
     {

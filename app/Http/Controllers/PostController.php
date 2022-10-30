@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Favourite;
 use App\Models\Post;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use JetBrains\PhpStorm\NoReturn;
 use Illuminate\Routing\ResourceRegistrar;
+use function MongoDB\BSON\toRelaxedExtendedJSON;
 
 class PostController extends Controller
 {
@@ -18,10 +20,10 @@ class PostController extends Controller
      */
     public function index()
     {
+
         return view("Home",
             [
-                'posts' => Post::filter(['enabled'], request(['search', 'genre', 'bpm']))->get(),
-                'favourites' => Favourite::all()
+                'posts' => Post::filter(['enabled'], request(['search', 'genre', 'bpm']))->withLiked()->get(),
             ]);
     }
 
@@ -42,7 +44,6 @@ class PostController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
-
     {
         $request->validate([
             'title' => 'required',
@@ -153,6 +154,7 @@ class PostController extends Controller
     public function switch(Request $request)
     {
         $post = Post::find($request->id);
+
         if ($post->enabled == 1) {
             $enabled = 0;
         } else {
@@ -173,16 +175,8 @@ class PostController extends Controller
      */
     public function like(Request $request)
     {
-        $postId = $request->id;
-        $userId = auth()->id();
-        $favourite = new Favourite();
-        $favourite->user_id = $userId;
-        $favourite->post_id = $postId;
-        $favourite->liked = 1;
-        $favourite->save();
-        return back();
+        Post::like();
     }
-
 
     /**
      * Remove the specified resource from storage.

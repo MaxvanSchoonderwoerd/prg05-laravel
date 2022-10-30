@@ -143,7 +143,7 @@ li {
 
 .post {
     //display: grid;
-    margin-bottom: 2rem;
+    margin: 2rem;
     transition: ease-in-out 100ms;
 }
 
@@ -347,16 +347,19 @@ tr {
     width: 4rem;
 }
 
+.likeDislikeForm {
+    margin: 1rem;
+}
+
+.likeButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .favouriteBtn {
     border: none;
     background: none;
-}
-
-.favouriteForm {
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin: 0.5rem;
 }
 
 

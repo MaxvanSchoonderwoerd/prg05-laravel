@@ -25,6 +25,8 @@
             <tr>
                 <th>Title</th>
                 <th>Date Added</th>
+                <th>Likes</th>
+                <th>Dislikes</th>
                 <th>Actief</th>
                 <th>Delete</th>
             </tr>
@@ -32,6 +34,8 @@
                 <tr>
                     <td>{{$post->title}}</td>
                     <td>{{$post->created_at}}</td>
+                    <td>{{$post->likes}}</td>
+                    <td>{{$post->dislikes}}</td>
                     <td>
                         <form action="{{ route('switch', ['id' => $post->id]) }}" method="post" id="switchForm{{$post->id}}" >
                             <div class="form-check form-switch">

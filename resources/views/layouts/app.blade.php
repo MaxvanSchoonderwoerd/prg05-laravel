@@ -56,9 +56,6 @@
                         @endif
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('email')}}">Email</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{route('post.create')}}">Upload</a>
                         </li>
                         <li class="nav-item dropdown">
