@@ -39,7 +39,8 @@ trait Likeable
 
     public function isLikedBy(User $user): bool
     {
-        return (bool)$user->favourite
+        return (bool)Favourite::all()
+            ->where('user_id', $user->id)
             ->where('post_id', $this->id)
             ->where('liked', true)
             ->count();
@@ -47,7 +48,8 @@ trait Likeable
 
     public function isDislikedBy(User $user): bool
     {
-        return (bool)$user->favourite
+        return (bool)Favourite::all()
+            ->where('user_id', $user->id)
             ->where('post_id', $this->id)
             ->where('liked', false)
             ->count();

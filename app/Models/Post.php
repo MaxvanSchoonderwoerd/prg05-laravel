@@ -20,7 +20,7 @@ class Post extends model
 
     public function scopeFilterSearch($query)
     {
-        if ($filters['search'] ?? false) {
+        if (request('search') ?? false) {
             $query->where('title', 'like', '%' . request('search') . '%');
         }
 
@@ -28,14 +28,14 @@ class Post extends model
 
     public function scopeFilterGenre($query)
     {
-        if ($filters['genre'] ?? false) {
+        if (request('genre') ?? false) {
             $query->where('genre', 'like', '%' . request('genre') . '%');
         }
     }
 
     public function scopeFilterBpm($query)
     {
-        if ($filters['bpm'] ?? false) {
+        if (request('bpm') ?? false) {
             $firstBpm = intval(request('bpm'));
             $secondBpm = intval(request('bpm')) + 20;
             $query->whereBetween('bpm', [$firstBpm, $secondBpm])->get();
