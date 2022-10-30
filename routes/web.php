@@ -27,7 +27,7 @@ Route::delete('/post/{post}/dislike', 'App\Http\Controllers\PostLikesController@
 Route::post('/post/like', 'App\Http\Controllers\PostController@like')->name('like');
 Route::post('/post/switch', 'App\Http\Controllers\PostController@switch')->name('switch');
 Route::get('/post/create', 'App\Http\Controllers\PostController@create')->name('create')->middleware('auth');
-Route::get('/post/manage', 'App\Http\Controllers\PostController@manage')->name('manage')->middleware('auth');
+Route::get('/post/manage', 'App\Http\Controllers\PostController@manage')->name('manage')->middleware('admin');
 
 Route::resource('post', PostController::class);
 
