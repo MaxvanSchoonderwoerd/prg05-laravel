@@ -37,7 +37,7 @@ class PostController extends Controller
 
         return view("ManagePosts",
             [
-                'posts' => Post::filter([''], request(['search', 'genre', 'bpm']))->withLiked()->get(),
+                'posts' => Post::filter(request(['search', 'genre', 'bpm']))->withLiked()->get(),
             ]);
     }
 
@@ -169,12 +169,7 @@ class PostController extends Controller
     public function switch(Request $request)
     {
         $post = Post::find($request->id);
-
-        if ($post->enabled == 1) {
-            $enabled = 0;
-        } else {
-            $enabled = 1;
-        }
+        $enabled = !$post->enabled;
         $post->update([
             'enabled' => $enabled
         ]);
