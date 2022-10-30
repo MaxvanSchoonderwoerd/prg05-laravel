@@ -55,9 +55,11 @@
                             </li>
                         @endif
                     @else
+                        @if (Auth::user() &&  Auth::user()->role == 1)
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('manage')}}">Manage posts</a>
                         </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('post.create')}}">Upload</a>
                         </li>
