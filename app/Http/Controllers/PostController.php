@@ -28,6 +28,21 @@ class PostController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function manage()
+    {
+
+        return view("ManagePosts",
+            [
+                'posts' => Post::filter([''], request(['search', 'genre', 'bpm']))->withLiked()->get(),
+            ]);
+    }
+
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
