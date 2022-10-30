@@ -23,7 +23,12 @@ class PostController extends Controller
 
         return view("Home",
             [
-                'posts' => Post::filter(['enabled'], request(['search', 'genre', 'bpm']))->withLiked()->get(),
+                'posts' => Post::filterEnabled()->
+                filterSearch()->
+                filterGenre()->
+                filterBpm()->
+                withLiked()->
+                get(),
             ]);
     }
 
@@ -34,10 +39,13 @@ class PostController extends Controller
      */
     public function manage()
     {
-
         return view("ManagePosts",
             [
-                'posts' => Post::filter(request(['search', 'genre', 'bpm']))->withLiked()->get(),
+                'posts' => Post::filterSearch()->
+                filterGenre()->
+                filterBpm()->
+                withLiked()->
+                get(),
             ]);
     }
 

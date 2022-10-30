@@ -10,26 +10,59 @@ class Post extends model
     use HasFactory;
     use Likeable;
 
-    public function scopeFilter($query, array $filters)
+
+    public function scopeFilterEnabled($query)
     {
         if ('enabled' ?? false) {
             $query->where('enabled', 'like', '1');
         }
+    }
+
+    public function scopeFilterSearch($query)
+    {
         if ($filters['search'] ?? false) {
             $query->where('title', 'like', '%' . request('search') . '%');
         }
 
-        if ($filters['genre'] ?? false) {
+    }
 
+    public function scopeFilterGenre($query)
+    {
+        if ($filters['genre'] ?? false) {
             $query->where('genre', 'like', '%' . request('genre') . '%');
         }
+    }
 
+    public function scopeFilterBpm($query)
+    {
         if ($filters['bpm'] ?? false) {
             $firstBpm = intval(request('bpm'));
             $secondBpm = intval(request('bpm')) + 20;
             $query->whereBetween('bpm', [$firstBpm, $secondBpm])->get();
         }
     }
+
+//    public function scopeFilter($query, array $filters)
+//    {
+//        if ('enabled' ?? false) {
+//            $query->where('enabled', 'like', '1');
+//        }
+//
+//        if ($filters['search'] ?? false) {
+//            $query->where('title', 'like', '%' . request('search') . '%');
+//        }
+//
+//        if ($filters['genre'] ?? false) {
+//
+//            $query->where('genre', 'like', '%' . request('genre') . '%');
+//        }
+//
+//        if ($filters['bpm'] ?? false) {
+//            $firstBpm = intval(request('bpm'));
+//            $secondBpm = intval(request('bpm')) + 20;
+//            $query->whereBetween('bpm', [$firstBpm, $secondBpm])->get();
+//        }
+//    }
 
     /**
      * Get the user that owns the phone.

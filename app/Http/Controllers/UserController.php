@@ -30,7 +30,6 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $userId = $user->id;
-//        $posts = User::find($userId)->posts;
         $posts = Post::where('user_id', '=', $userId)->withLiked()->get();
         return view('UserProfile', compact('user', 'posts'));
     }
