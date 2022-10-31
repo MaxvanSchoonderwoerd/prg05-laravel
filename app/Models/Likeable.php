@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 trait Likeable
 {
-    public function scopeWithLiked(Builder $query){
+    public function scopeWithLiked(Builder $query)
+    {
         $query->leftJoinSub(
             'select post_id, sum(liked) likes, sum(!liked) dislikes from favourites group by post_id',
             'liked',
@@ -20,21 +21,62 @@ trait Likeable
         return $this->hasMany(Favourite::class);
     }
 
-    public function like($user = null, $liked = true)
+    public function like()
     {
+        $userId = auth()->id();
+
+        if ($this->isLikedBy(auth()->user())) {
+
+            $fav = Favourite::all()
+                ->where('user_id', $userId)
+                ->where('post_id', $this->id);
+
+            $id = head(head((array)$fav))->id;
+
+            $favourite = Favourite::find($id);
+
+            $favourite->delete();
+
+            return;
+        }
+
         $this->favourites()->updateOrCreate(
             [
-                'user_id' => auth()->id()
+                'user_id' => $userId
             ],
             [
-                'liked' => $liked
+                'liked' => true
             ]
         );
     }
 
-    public function dislike($user = null)
+    public function dislike()
     {
-        $this->like($user, false);
+        $userId = auth()->id();
+
+        if ($this->isDislikedBy(auth()->user())) {
+
+            $fav = Favourite::all()
+                ->where('user_id', $userId)
+                ->where('post_id', $this->id);
+
+            $id = head(head((array)$fav))->id;
+
+            $favourite = Favourite::find($id);
+
+            $favourite->delete();
+
+            return;
+        }
+
+        $this->favourites()->updateOrCreate(
+            [
+                'user_id' => $userId
+            ],
+            [
+                'liked' => false
+            ]
+        );
     }
 
     public function isLikedBy(User $user): bool

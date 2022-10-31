@@ -74,7 +74,7 @@
                                                         stroke-linecap="round"/>
                                                 </g>
                                             </svg>
-                                            {{$post->likes}}
+                                             @if($post->likes) {{$post->likes}} @else 0 @endif
                                         </button>
                                     </form>
                                     <form class="likeDislikeForm" action='post/{{$post->id}}/dislike'
@@ -99,12 +99,12 @@
                                                         stroke-linecap="round"/>
                                                 </g>
                                             </svg>
-                                            {{$post->dislikes}}
+                                            @if($post->dislikes) {{$post->dislikes}} @else 0 @endif
                                         </button>
                                     </form>
                                     </span>
                                 @endauth
-                                <audio class="audioPlayer" controls>
+                                <audio class="audioPlayer" controls preload="none">
                                     <source src="/{{$post->file}}" type="audio/mp3">
                                 </audio>
                             </a>

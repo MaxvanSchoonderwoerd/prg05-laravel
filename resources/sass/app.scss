@@ -97,10 +97,6 @@ header {
     flex-direction: column;
 }
 
-.filterTitle {
-
-}
-
 .checkBox {
     display: flex;
     align-items: center;
@@ -111,7 +107,6 @@ header {
 }
 
 .navBtn {
-    //border: solid var(--clr_third) 2px;
     background-color: var(--clr_third);
     color: var(--clr_primary);
     text-decoration: none;
@@ -170,6 +165,7 @@ li {
     background-color: var(--clr_primary);
     padding: 2rem 0 calc(var(--cover_size) - 6.95rem) 10rem;
     width: 30rem;
+    min-height: var(--cover_size);
     display: block;
     text-align: center;
     text-decoration: none;
@@ -182,9 +178,13 @@ li {
     position: absolute;
     left: 0;
     right: 0;
+    bottom: 0;
     margin-left: 10.5rem;
     margin-right: auto;
-    bottom: 0;
+}
+
+.audioPlayerDetails {
+    width: 100%;
 }
 
 audio::-webkit-media-controls-panel {
@@ -236,13 +236,6 @@ td {
 tr {
     padding: 0 5rem;
 }
-
-.detailsSection {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 
 /*form*/
 

@@ -1,11 +1,20 @@
 @extends('layouts.app')
 @section('title', 'details')
 @section('content')
-    <section class="section detailsSection">
+
+    {{--title section--}}
+    <section class="section">
         <div class="container">
             <h1>{{$post->title}} | Details</h1>
             <a href="{{ route('post.index') }}">Home</a>
-            @if(Auth::id() == $post->user_id)
+        </div>
+    </section>
+
+    {{--details section--}}
+    <section class="section">
+        @if(Auth::id() == $post->user_id)
+            {{--            form view when the current user is the op--}}
+            <div class="container">
                 <form class="form" action="{{route('post.update', $post->id)}}" method="post"
                       enctype="multipart/form-data">
                     @csrf
@@ -51,8 +60,11 @@
                     <button type="submit" class="btn btn-danger btn-block">Delete Beat</button>
                 </form>
                 <img class="coverImg" src="{{$post->cover}}" alt="Cover art">
-            @else
-                <table class="section">
+            </div>
+        @else
+            {{--            table view when the current user is not the op--}}
+            <div class="container">
+                <table>
                     <tr>
                         <th>Posten by</th>
                         <th>Title</th>
@@ -70,14 +82,17 @@
                         <td>{{$post->created_at}}</td>
                     </tr>
                 </table>
-            @endif
-        </div>
+            </div>
+        @endif
+    </section>
+
+    {{--audio section--}}
+    <section class="section">
         <div class="container">
-            <audio class="audioPlayer" controls>
+            <audio class="audioPlayerDetails" controls>
                 <source src="/{{$post->file}}" type="audio/mp3">
             </audio>
         </div>
     </section>
-
 @endsection
 
