@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Favourite;
 use App\Models\Post;
-use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use JetBrains\PhpStorm\NoReturn;
-use Illuminate\Routing\ResourceRegistrar;
-use function MongoDB\BSON\toRelaxedExtendedJSON;
+
 
 class PostController extends Controller
 {
@@ -21,15 +17,17 @@ class PostController extends Controller
     public function index()
     {
 
-        return view("Home",
+        return view(
+            "Home",
             [
                 'posts' => Post::filterEnabled()->
-                filterSearch()->
-                filterGenre()->
-                filterBpm()->
-                withLiked()->
-                get(),
-            ]);
+                    filterSearch()->
+                    filterGenre()->
+                    filterBpm()->
+                    withLiked()->
+                    get(),
+            ]
+        );
     }
 
     /**
@@ -39,14 +37,16 @@ class PostController extends Controller
      */
     public function manage()
     {
-        return view("ManagePosts",
+        return view(
+            "ManagePosts",
             [
                 'posts' => Post::filterSearch()->
-                filterGenre()->
-                filterBpm()->
-                withLiked()->
-                get(),
-            ]);
+                    filterGenre()->
+                    filterBpm()->
+                    withLiked()->
+                    get(),
+            ]
+        );
     }
 
 
@@ -89,8 +89,8 @@ class PostController extends Controller
             //rename file to [current time] + [original file name]
             $audioName = time() . '_' . $audio->getClientOriginalName();
 
-            //move file to public/assets/
-            $audio->move('assets/', $audioName);
+            //move file to public/assets/userID/audio
+            $audio->move('assets/' . Auth::id() . '/audio', $audioName);
 
 
             // ======= cover art =====
@@ -101,8 +101,8 @@ class PostController extends Controller
             //rename file to [audio name] + [cover file extension (png or jpg)]
             $coverName = pathinfo($audioName, PATHINFO_FILENAME) . '.' . $cover->getClientOriginalExtension();
 
-            //move file to public/assets/cover
-            $cover->move('assets/cover/', $coverName);
+            //move file to public/assets/userID/cover
+            $cover->move('assets/' . Auth::id() . '/cover', $coverName);
 
 
             //set the fillable attributes in the class to the ones the user has uploaded
@@ -112,11 +112,12 @@ class PostController extends Controller
             $post->description = $request->description;
             $post->genre = $request->genre;
             //path for mp3 file
-            $post->file = 'assets/' . $audioName;
+            $post->file = 'assets/' . Auth::id() . '/audio/' . $audioName;
             //path for png file
-            $post->cover = 'assets/cover/' . $coverName;
+            $post->cover = 'assets/' . Auth::id() . '/cover/' . $coverName;
 
-            //save the post to database
+            //save the post to databased
+
             $post->save();
         }
         return redirect()->route('home');
@@ -191,7 +192,7 @@ class PostController extends Controller
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function like(Request $request)
+    public function like(Request $request): void
     {
         Post::like();
     }
