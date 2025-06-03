@@ -156,10 +156,33 @@ li {
     width: var(--cover_size);
 }
 
+.jumbo {
+    position: relative;
+}
+
 .coverJumbo {
     width: 100%;
     height: 25rem;
     object-fit: cover;
+}
+
+.coverOverlay {
+    position: absolute;
+    width: 20rem;
+    height: 20rem;
+
+    right: 0;
+    bottom: -4rem;
+
+    border-radius: 1rem;
+
+    box-shadow: 0 5px 60px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .coverOverlay {
+        display: none;
+    }
 }
 
 .split {
