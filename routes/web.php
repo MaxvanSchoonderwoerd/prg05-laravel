@@ -1,13 +1,10 @@
 <?php
 
-use App\Http\Controllers\DetailsController;
-use App\Http\Controllers\oldHomeController;
+
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UploadController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,8 +32,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('user', UserController::class);
 });
 
-
 Route::get('/EmailTest', [MailController::class, 'show'])->name('email');
 
 Auth::routes();
-

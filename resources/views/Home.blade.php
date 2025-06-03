@@ -105,7 +105,7 @@
                                     </span>
                                 @endauth
                                 <audio class="audioPlayer" controls preload="none">
-                                    <source src="/{{$post->file}}" type="audio/mp3">
+                                    <source src="{{$post->file}}" type="audio/mp3">
                                 </audio>
                             </a>
                         </div>

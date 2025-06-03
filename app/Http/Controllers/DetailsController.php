@@ -9,27 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class DetailsController extends Controller
 {
+    /**
+     * Display the details of a specific post.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function show(Request $request)
     {
-
         $selectedPost = Post::find($request->get('id'));
-
-//        if ($request->post('favourite')) {
-//            //all duplicates
-//            $dublicates = Favourite::all()->where('user_id', Auth::id())->where('post_id', $selectedPost->id);
-//
-//            //new favourite instance
-//            $favourite = new Favourite();
-//            $favourite->user_id = Auth::id();
-//            $favourite->post_id = $selectedPost->id;
-//            if ($dublicates) {
-//                $favourite->liked = false;
-//            } else {
-//                $favourite->liked = true;
-//            }
-//            $favourite->save();
-//        }
-
         return view('Details', compact('selectedPost'));
     }
 }

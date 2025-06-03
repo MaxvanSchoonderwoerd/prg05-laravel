@@ -112,9 +112,9 @@ class PostController extends Controller
             $post->description = $request->description;
             $post->genre = $request->genre;
             //path for mp3 file
-            $post->file = 'assets/' . Auth::id() . '/audio/' . $audioName;
+            $post->file = '/assets/' . Auth::id() . '/audio/' . $audioName;
             //path for png file
-            $post->cover = 'assets/' . Auth::id() . '/cover/' . $coverName;
+            $post->cover = '/assets/' . Auth::id() . '/cover/' . $coverName;
 
             //save the post to databased
 
