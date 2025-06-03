@@ -2,12 +2,17 @@
 @section('title', 'details')
 @section('content')
 
+    {{--jumbo image of cover--}}
+    <img class="coverJumbo" src="{{$post->cover}}" alt="Cover art">
+
+
     {{--title section--}}
     <section class="section">
         <div class="container">
             <a href="{{ route('post.index') }}">Back</a>
-            <h1>{{$post->title}} | Details</h1>
-            <p>Posted by {{$post->user->name}}</p>
+            <h1>{{$post->title}}</h1>
+            <p>Posted by {{$post->user->name}}, {{$post->created_at->diffForHumans()}} </p>
+            <p> {{$post->bpm}}bpm, {{$post->genre}}</p>
         </div>
     </section>
 
@@ -65,24 +70,7 @@
         @else
             {{-- table view when the current user is not the op--}}
             <div class="container">
-                <table>
-                    <tr>
-                        <th>Posten by</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Bpm</th>
-                        <th>Genre</th>
-                        <th>Date Added</th>
-                    </tr>
-                    <tr>
-                        <td>{{$post->user->name}}</td>
-                        <td>{{$post->title}}</td>
-                        <td>{{$post->description}}</td>
-                        <td>{{$post->bpm}}</td>
-                        <td>{{$post->genre}}</td>
-                        <td>{{$post->created_at}}</td>
-                    </tr>
-                </table>
+                <p>{{$post->description}}</p>
             </div>
         @endif
     </section>
@@ -90,9 +78,6 @@
     {{--audio section--}}
     <section class="section">
         <div class="container">
-            <audio class="audioPlayerDetails" controls>
-                <source src="/{{$post->file}}" type="audio/mp3">
-            </audio>
-        </div>
+            <audio class="audioPlayerDetails" controls src="{{ $post->file}}">
     </section>
 @endsection
